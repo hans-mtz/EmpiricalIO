@@ -25,7 +25,7 @@ JuliaCall::julia_markdown_setup()
 
 # Homogeneous consumers model
 
-I used Julia for this problem set. This solution and the code can be found in my github [repo](). My true parameters are $\{\beta,\alpha,\sigma, \eta\}=\{2.5,4.0,2.0,1.5\}$.
+I used Julia for this problem set. This solution and the code can be found in my github [repo](https://github.com/hans-mtz/EmpiricalIO/tree/main/PS1). My true parameters are $\{\beta,\alpha,\sigma, \eta\}=\{2.5,4.0,2.0,1.5\}$.
 
 a.  Description of the simulated data is summarized in table 1. Likewise, the correlations between the unobserved and observed variables are described in table 2.
 
