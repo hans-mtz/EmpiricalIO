@@ -1,0 +1,2 @@
+export TEXMFHOME=/usr/local/texlive/2020/texmf-dist
+xelatex PS1

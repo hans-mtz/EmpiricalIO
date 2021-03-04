@@ -1,0 +1,24 @@
+\begin{table}[htb]
+\centering
+\caption{Results from estimations}
+\begin{tabular}{r|cc|cc|cccc}
+\toprule
+            & \multicolumn{2}{c}{OLS} & \multicolumn{2}{c}{IV Reduced Form} & \multicolumn{4}{c}{IV2S}                        \\
+            & (1)         & (2)       & (3)              & (4)             & (5)        & (6)       & (7)       & (8)        \\ \hline
+(Intercept) &  -12.672*** &           &       -12.662*** &                 & -12.602*** &           &           & -13.054*** \\
+            &     (0.083) &           &          (0.071) &                 &    (0.495) &           &           &    (0.486) \\
+          x &    1.888*** &    2.922* &         1.693*** &           2.589 &   2.418*** &   6.036** &     3.811 &   2.368*** \\
+            &     (0.106) &   (1.645) &          (0.097) &         (1.758) &    (0.881) &   (2.399) &   (2.524) &    (0.876) \\
+          p &   -3.623*** & -4.502*** &        -3.452*** &       -4.208*** &            &           &           &            \\
+            &     (0.049) &   (0.762) &          (0.052) &         (0.931) &            &           &           &            \\
+          w &             &           &        -0.548*** &          -0.932 &            &           &           &            \\
+            &             &           &          (0.093) &         (1.687) &            &           &           &            \\
+          z &             &           &                  &                 &  -3.986*** & -6.629*** & -5.109*** &  -3.946*** \\
+            &             &           &                  &                 &    (0.515) &   (1.390) &   (1.466) &    (0.509) \\ \hline
+          N &         100 &       100 &              100 &             100 &        100 &       100 &       100 &        100 \\
+      $R^2$ &       0.987 &    -2.200 &            0.990 &          -2.190 &      0.542 &    -2.523 &    -2.862 &      0.542 \\
+\bottomrule
+\multicolumn{8}{p{.8\textwidth}}{\small Columns (7) and (8) do not include an intercept in the first stage of the IV estimation.}
+% <!-- \footnote{Columns (7) and (8) does not include an intercept in the first stage of the IV estimation.} -->
+\end{tabular}
+\end{table}
