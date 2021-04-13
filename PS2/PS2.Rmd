@@ -26,9 +26,9 @@ load("../prod.RData")
 
 # Introduction {-}
 
-For this assignment, I hard-coded everything from scratch in `R`. It didn't cross my mind that someone might have already coded this estimation procedure. In any case, this allowed me to use in the first stage a nice tool from Machine Learning (ML), called Multivariate Adaptive Regression Splines (MARS). Intuitively, this algorithm creates automatically a piecewise linear model. MARS performs well in comparison to other non-parametric non-linear interpolation routines. The advantage is that the algorithm splits the variable space optimally. That is, it searches over the best possible partition of the variables fed into it.
+For this assignment, I hard-coded everything from scratch in `R`. It didn't cross my mind that someone might have already coded this estimation procedure. In any case, this allowed me to use in the first stage a nice tool from Machine Learning (ML), called Multivariate Adaptive Regression Splines (MARS). Intuitively, this algorithm creates automatically a piecewise linear model. MARS performs well in comparison to other non-parametric non-linear interpolation routines. The advantage is that the algorithm splits the variable space optimally. That is, it searches over the best possible partition of the variables fed into it. For the second stage, I used an optimization package called `optimx`.
 
-However, one of the challenges to code everything from scratch was the estimation of the standard errors.  These are usually bootstrapped as in Levinsohn and Petrin, and discussed by Ackerberg et al. The challenge is to bootstrap from panel data respecting the structure. In our case, it is also important to consider the assumption on the productivity's markovian process. One suggestion is to bootstrap by block. Alternatively, we can also do *jackknife* resampling, which is what I ended up doing. In the *jackknife* procedure, I removed randomly one firm with all its time observations per resampling iteration. I resampled 100 times, then I estimated the standard errors from the distribution of coefficients. Ideally, I would have liked to jackknife over the entire sample, not just over 100 randomly selected firms. However, the procedure was taking too long.
+One of the challenges to code everything from scratch was the estimation of the standard errors.  These are usually bootstrapped as in Levinsohn and Petrin, and discussed by Ackerberg et al. The challenge is to bootstrap from panel data respecting the structure. In our case, it is also important to consider the assumption on the productivity's Markovian process. One suggestion is to bootstrap by block. Alternatively, we can also do *jackknife* resampling, which is what I ended up doing. In the *jackknife* procedure, I removed randomly one firm with all its time observations per iteration. I resampled 100 times, then I estimated the standard errors from the distribution of coefficients. Ideally, I would have liked to jackknife over the entire sample, not just over 100 randomly selected firms. However, the procedure was taking too long.
 
 This report and the code can be found in my GitHub [repo](https://github.com/hans-mtz/EmpiricalIO/tree/main/PS2).
 
@@ -43,7 +43,7 @@ knitr::kable(res, digits = 4,
              booktabs = TRUE,
              format.args = list(big.mark = ",", scientific = FALSE)) %>%
               kableExtra::kable_styling(latex_options = "hold_position") %>%   
-              kableExtra::add_footnote("Coefficient estimates and standard errors calculated using jackknife resampling with 100 iterations.")
+              kableExtra::add_footnote("Standard errors calculated using jackknife resampling with 100 iterations.")
 
 knitr::kable(o_r, digits = 4, caption = "Summary statistics of the productivity distribution", booktabs = TRUE, format.args = list(big.mark = ",", scientific = FALSE))
 ```
@@ -57,7 +57,7 @@ knitr::kable(o_r, digits = 4, caption = "Summary statistics of the productivity 
 knitr::kable(res_n_inv, digits = 4, caption = "ACF without zero-investment firms[note]",
              booktabs = TRUE) %>%
               kableExtra::kable_styling(latex_options = "hold_position") %>%   
-              kableExtra::add_footnote("Coefficient estimates and standard errors calculated using jackknife resampling with 100 iterations.")
+              kableExtra::add_footnote("Standard errors calculated using jackknife resampling with 100 iterations.")
 
 knitr::kable(o_sum, digits = 4, caption = "Summary statistics productivity distribution without zero-investment firms", booktabs = TRUE, format.args = list(big.mark = ",", scientific = FALSE))
 
@@ -81,7 +81,7 @@ knitr::kable(e, digits = 4, caption = "ACF with and without exporting firms[note
   kableExtra::kable_styling(latex_options = "hold_position") %>%
   kableExtra::pack_rows("Non-Exporting",1,4) %>% 
   kableExtra::pack_rows("Exporting",5,8) %>%
-  kableExtra::add_footnote("Coefficient estimates and standard errors calculated using jackknife resampling with 100 iterations.")
+  kableExtra::add_footnote("Standard errors calculated using jackknife resampling with 100 iterations.")
 
 knitr::kable(oe, digits = 4, caption = "Summary statistics productivity distribution without zero-investment firms", booktabs = TRUE, format.args = list(big.mark = ",", scientific = FALSE)) %>%
   kableExtra::kable_styling(latex_options = "hold_position") %>%
@@ -101,7 +101,7 @@ knitr::kable(i, digits = 4, caption = "ACF with and without exporting firms[note
   kableExtra::kable_styling(latex_options = "hold_position") %>%
   kableExtra::pack_rows("Non-Importing",1,4) %>% 
   kableExtra::pack_rows("Importing",5,8) %>%
-  kableExtra::add_footnote("Coefficient estimates and standard errors calculated using jackknife resampling with 100 iterations.")
+  kableExtra::add_footnote("Standard errors calculated using jackknife resampling with 100 iterations.")
 
 knitr::kable(oi, digits = 4, caption = "Summary statistics productivity distribution without zero-investment firms", booktabs = TRUE, format.args = list(big.mark = ",", scientific = FALSE)) %>%
   kableExtra::kable_styling(latex_options = "hold_position") %>%
