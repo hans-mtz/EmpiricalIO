@@ -195,15 +195,15 @@ summary {
 <h1 class="title toc-ignore">Empirical IO</h1>
 <h3 class="subtitle">PS2: Production function estimation</h3>
 <h4 class="author">Hans Martinez</h4>
-<h4 class="date">Apr 12, 2021</h4>
+<h4 class="date">Apr 13, 2021</h4>
 
 </div>
 
 
 <div id="introduction" class="section level1 unnumbered">
 <h1 class="unnumbered">Introduction</h1>
-<p>For this assignment, I hard-coded everything from scratch in <code>R</code>. It didn’t cross my mind that someone might have already coded this estimation procedure. In any case, this allowed me to use in the first stage a nice tool from Machine Learning (ML), called Multivariate Adaptive Regression Splines (MARS). Intuitively, this algorithm creates automatically a piecewise linear model. MARS performs well in comparison to other non-parametric non-linear interpolation routines. The advantage is that the algorithm splits the variable space optimally. That is, it searches over the best possible partition of the variables fed into it.</p>
-<p>However, one of the challenges to code everything from scratch was the estimation of the standard errors. These are usually bootstrapped as in Levinsohn and Petrin, and discussed by Ackerberg et al. The challenge is to bootstrap from panel data respecting the structure. In our case, it is also important to consider the assumption on the productivity’s markovian process. One suggestion is to bootstrap by block. Alternatively, we can also do <em>jackknife</em> resampling, which is what I ended up doing. In the <em>jackknife</em> procedure, I removed randomly one firm with all its time observations per resampling iteration. I resampled 100 times, then I estimated the standard errors from the distribution of coefficients. Ideally, I would have liked to jackknife over the entire sample, not just over 100 randomly selected firms. However, the procedure was taking too long.</p>
+<p>For this assignment, I hard-coded everything from scratch in <code>R</code>. It didn’t cross my mind that someone might have already coded this estimation procedure. In any case, this allowed me to use in the first stage a nice tool from Machine Learning (ML), called Multivariate Adaptive Regression Splines (MARS). Intuitively, this algorithm creates automatically a piecewise linear model. MARS performs well in comparison to other non-parametric non-linear interpolation routines. The advantage is that the algorithm splits the variable space optimally. That is, it searches over the best possible partition of the variables fed into it. For the second stage, I used an optimization package called <code>optimx</code>.</p>
+<p>One of the challenges to code everything from scratch was the estimation of the standard errors. These are usually bootstrapped as in Levinsohn and Petrin, and discussed by Ackerberg et al. The challenge is to bootstrap from panel data respecting the structure. In our case, it is also important to consider the assumption on the productivity’s Markovian process. One suggestion is to bootstrap by block. Alternatively, we can also do <em>jackknife</em> resampling, which is what I ended up doing. In the <em>jackknife</em> procedure, I removed randomly one firm with all its time observations per iteration. I resampled 100 times, then I estimated the standard errors from the distribution of coefficients. Ideally, I would have liked to jackknife over the entire sample, not just over 100 randomly selected firms. However, the procedure was taking too long.</p>
 <p>This report and the code can be found in my GitHub <a href="https://github.com/hans-mtz/EmpiricalIO/tree/main/PS2">repo</a>.</p>
 </div>
 <div id="acf-production-function-estimation" class="section level1">
@@ -306,7 +306,7 @@ S.E.
 <tfoot>
 <tr>
 <td style="padding: 0; border:0;" colspan="100%">
-<sup>a</sup> Coefficient estimates and standard errors calculated using jackknife resampling with 100 iterations.
+<sup>a</sup> Standard errors calculated using jackknife resampling with 100 iterations.
 </td>
 </tr>
 </tfoot>
@@ -557,7 +557,7 @@ S.E.
 <tfoot>
 <tr>
 <td style="padding: 0; border:0;" colspan="100%">
-<sup>a</sup> Coefficient estimates and standard errors calculated using jackknife resampling with 100 iterations.
+<sup>a</sup> Standard errors calculated using jackknife resampling with 100 iterations.
 </td>
 </tr>
 </tfoot>
@@ -890,7 +890,7 @@ S.E.
 <tfoot>
 <tr>
 <td style="padding: 0; border:0;" colspan="100%">
-<sup>a</sup> Coefficient estimates and standard errors calculated using jackknife resampling with 100 iterations.
+<sup>a</sup> Standard errors calculated using jackknife resampling with 100 iterations.
 </td>
 </tr>
 </tfoot>
@@ -1345,7 +1345,7 @@ S.E.
 <tfoot>
 <tr>
 <td style="padding: 0; border:0;" colspan="100%">
-<sup>a</sup> Coefficient estimates and standard errors calculated using jackknife resampling with 100 iterations.
+<sup>a</sup> Standard errors calculated using jackknife resampling with 100 iterations.
 </td>
 </tr>
 </tfoot>

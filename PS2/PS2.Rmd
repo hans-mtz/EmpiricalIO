@@ -3,13 +3,13 @@ title: "Empirical IO"
 author: "Hans Martinez"
 date: "`r format(Sys.time(), '%b %d, %Y')`"
 output:
+  html_document:
+    df_print: paged
+  bookdown::pdf_document2: default
   pdf_document:
     extra_dependencies: tabularx, booktabs, footnote, bbm
     includes:
       in_header: myheader.sty
-  bookdown::pdf_document2: default
-  html_document:
-    df_print: paged
 subtitle: 'PS2: Production function estimation'
 linkcolor: red
 urlcolor: red
